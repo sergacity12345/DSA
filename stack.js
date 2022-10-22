@@ -71,7 +71,8 @@
 
 // class Stacks{
 //      constructor(){
-//           this.dataStore = []
+//           this.dataStore = [];
+//           this.top = 0
 //      }
 //      push(element){
 //           // this.items[this.top] = element;
@@ -120,10 +121,10 @@
 //      length(){
 //           return this.dataStore.length
 //      }
-//      mulBase(num){
+//      palindrome(word){
 //           let s = new Stacks()
-//           for(let i = 0; i < num.length; i++){
-//                s.push(num[i])
+//           for(let i = 0; i < word.length; i++){
+//                s.push(word[i])
 //           }
 //           let converted = '';
 //           while(s.length() > 0){
@@ -134,7 +135,7 @@
 //      }
 // } 
 // const stack = new Stacks()
-// let num = "Panama"
+// let word = "Panama"
 // let base = 2
 // // console.log(stack.mulBase(num))
 
@@ -145,36 +146,38 @@
 //      console.log(stack.mulBase(num))
 // }
 
-class Stacks{
-     constructor(){
-          this.dataStore = []
-     }
-     push(element){
-          // this.items[this.top] = element;
-          // this.top ++;
-          this.dataStore.push(element)
-               }
-     pop(){
-          return this.dataStore.pop()
-     }
-     length(){
-          return this.dataStore.length
-     }
-     mulBase(num){
-          let s = new Stacks()
-          while(num >1 ){
-               s.push(num)
-               num--
-          }
-          let converted = 1;
-          while(s.length() > 0){
-                converted *= s.pop()
-          }
-          return converted
+
+// (3)RECURSION
+// class Stacks{
+//      constructor(){
+//           this.dataStore = []
+//      }
+//      push(element){
+//           // this.items[this.top] = element;
+//           // this.top ++;
+//           this.dataStore.push(element)
+//                }
+//      pop(){
+//           return this.dataStore.pop()
+//      }
+//      length(){
+//           return this.dataStore.length
+//      }
+//      mulBase(num){
+//           let s = new Stacks()
+//           while(num >1 ){
+//                s.push(num)
+//                num--
+//           }
+//           let converted = 1;
+//           while(s.length() > 0){
+//                 converted *= s.pop()
+//           }
+//           return converted
           
-     }
-} 
+//      }
+// } 
 
-const stack = new Stacks()
+// const stack = new Stacks()
 
-console.log(stack.mulBase(5))
+// console.log(stack.mulBase(5))
