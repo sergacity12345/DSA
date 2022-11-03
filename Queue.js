@@ -103,53 +103,85 @@
 // console.log(queue)
 
 
+
+// learn about searching through a queue and accessing 
+
+// CIRCULAR QUEUE
+// clock
+// data streaming
+// traffic light
+
 class Queue{
-    constructor(){
-        this.dataItem = [];
-        this.top = 0
+    constructor(capacity){
+        this.item = new Array(capacity)
+        this.capacity = capacity
+        this.currentLength = 0;
+        this.rear = -1
+        this.front = -1;
     }
-
-
-    isBuffer(){
-        return this.dataItem.splice()
-    }
-
-
-    enqueue(element){
-        this.dataItem[this.top] = element;
-        ++this.top;
+    isFull(){
+        return this.currentLength === this.capacity;
     }
 
     isEmpty(){
-        if(this.dataItem.length > 0){
-            return false
-        }
-        return true
+        return this.currentLength === 0
     }
-    
+    enqueue(element){
+        if(!this.isFull()){
+            this.rear = (this.rear + 1) % this.capacity;
+            this.item[this.rear] = element
+            this.currentLength += 1
+            if(this.front === -1){
+                this.front = this.rear
+            }
+        }
+    }
 
     deQueue(){
-        if(!this.isEmpty()){
-            return this.dataItem.shift()
+        if(this.isEmpty()){
+            return null
         }
-        return null
+        const items = this.item[this.front]
+        this.item[this.front] = null
+        this.front = (this.front + 1) % this.capacity;
+        this.currentLength -= 1
+        if(this.isEmpty()){
+            this.front = -1
+            this.rear = -1
+        }
+        return items
     }
-
     peek(){
-        return this.dataItem[0]
+        if(!this.isEmpty()){
+            return null
+        }else{
+            return this.item[this.front]
+        }
     }
-
-    
+    print(){
+        if(this.isEmpty()){
+            return `${this.item} is empty`
+        }else{
+            let i;
+            let str ;
+            for(i = this.front ; i !== this.rear; i =(i+1) % this.capacity){
+                str += this.item[i] + " "
+            }
+            str += this.item[i]
+            console.log(str)
+        }
+    }
 }
-const queue = new Queue()
 
+const queue = new Queue(5)
+queue.enqueue(1)
+queue.enqueue(2)
+queue.enqueue(3)
 queue.enqueue(4)
 queue.enqueue(5)
-queue.enqueue(5)
-queue.enqueue(5)
-queue.enqueue(5)
-queue.enqueue(5)
-queue.enqueue(6)
-// console.log(queue)
+console.log(queue.isFull())
+queue.print()
+// console.log(queue.item)
+console.log(queue.deQueue())
 
-// learn about searching through a queue and accessing 
+console.log(queue.peek())
